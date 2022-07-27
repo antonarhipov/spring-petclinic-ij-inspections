@@ -15,7 +15,12 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.samples.petclinic.owner.PetFormatterProvider.PetFormatter;
+import org.springframework.samples.petclinic.system.GeneralConfig;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -24,22 +29,34 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * @author Juergen Hoeller
  * @author Ken Krebs
  * @author Arjen Poutsma
  */
+@DependsOn("petFormatter")
 @Controller
 @RequestMapping("/owners/{ownerId}")
 class PetController {
 
 	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
-	private final OwnerRepository owners;
+	@Autowired
+	private static GeneralConfig generalConfig;
 
-	public PetController(OwnerRepository owners) {
+	private final OwnerRepository owners;
+	private PetRepository petRepository;
+	private PetFormatter petFormatter;
+
+	public PetController(OwnerRepository owners,
+						 PetRepository petRepository,
+						 PetFormatter petFormatter) {
 		this.owners = owners;
+		this.petRepository = petRepository;
+		this.petFormatter = petFormatter;
 	}
 
 	@ModelAttribute("types")
@@ -66,6 +83,15 @@ class PetController {
 	@InitBinder("pet")
 	public void initPetBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new PetValidator());
+	}
+
+	@GetMapping("/pets/all")
+	public String getAllPets(Model model) {
+		String pets = StreamSupport.stream(petRepository.findAll().spliterator(), true)
+			.map(petFormatter::format)
+			.collect(Collectors.joining(",\n"));
+		model.addAttribute("pets", pets);
+		return "all-pets";
 	}
 
 	@GetMapping("/pets/new")

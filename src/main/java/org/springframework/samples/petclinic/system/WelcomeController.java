@@ -17,13 +17,21 @@
 package org.springframework.samples.petclinic.system;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 class WelcomeController {
 
+	private final GeneralConfig generalConfig;
+
+	public WelcomeController(GeneralConfig generalConfig) {
+		this.generalConfig = generalConfig;
+	}
+
 	@GetMapping("/")
-	public String welcome() {
+	public String welcome(Model model) {
+		model.addAttribute("welcomeText", generalConfig.getWelcomeText());
 		return "welcome";
 	}
 

@@ -15,25 +15,25 @@
  */
 package org.springframework.samples.petclinic.owner;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.validation.Valid;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.samples.petclinic.system.GeneralConfig;
+import org.springframework.samples.petclinic.system.event.EntityRequestedEvent;
+import org.springframework.samples.petclinic.system.event.EntityRequestedEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Juergen Hoeller
@@ -41,20 +41,43 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Arjen Poutsma
  * @author Michael Isvy
  */
+@DependsOn("generalconfig")
 @Controller
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
-	private final OwnerRepository owners;
+	private GeneralConfig generalConfig;
 
-	public OwnerController(OwnerRepository clinicService) {
+	private OwnerRepository owners;
+
+	private EntityRequestedEventPublisher requestedEventPublisher;
+
+	@Autowired
+	public OwnerController(GeneralConfig generalConfig,
+						   EntityRequestedEventPublisher requestedEventPublisher) {
+		this.generalConfig = generalConfig;
+	}
+
+	@Autowired
+	public OwnerController(OwnerRepository clinicService,
+						   EntityRequestedEventPublisher requestedEventPublisher) {
 		this.owners = clinicService;
 	}
 
 	@InitBinder
-	public void setAllowedFields(WebDataBinder dataBinder) {
+	public boolean setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
+		return true;
+	}
+
+	@CachePut
+	@GetMapping("/owners/all")
+	public String findAllOwners() {
+		requestedEventPublisher.publish(new EntityRequestedEvent("Owner"));
+		// load datta from repository
+		return "all-owners";
 	}
 
 	@ModelAttribute("owner")
