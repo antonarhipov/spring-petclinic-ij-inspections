@@ -35,7 +35,10 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Sam Brannen
  * @author Michael Isvy
  */
+@SuppressWarnings("unused")
 public interface OwnerRepository extends Repository<Owner, Integer> {
+
+	List<Owner> findByName(String name);
 
 	/**
 	 * Retrieve all {@link PetType}s from the data store.
@@ -78,6 +81,4 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	@Query("SELECT owner FROM Owner owner")
 	@Transactional(readOnly = true)
 	Page<Owner> findAll(Pageable pageable);
-
-	List<Owner> findByName(String name);
 }

@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.owner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+@SuppressWarnings("ALL")
 @Component
 public class PetFormatterProvider {
 
@@ -11,7 +12,7 @@ public class PetFormatterProvider {
 		return new PetFormatter();
 	}
 
-	public class PetFormatter {
+	public static class PetFormatter {
 
 		public String format(Pet pet) {
 			return pet.getName();

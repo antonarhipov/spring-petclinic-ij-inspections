@@ -41,7 +41,6 @@ import java.util.Map;
  * @author Arjen Poutsma
  * @author Michael Isvy
  */
-@DependsOn("generalconfig")
 @Controller
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 class OwnerController {

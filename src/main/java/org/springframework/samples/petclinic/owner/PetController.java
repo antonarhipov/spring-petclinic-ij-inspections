@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -37,6 +38,7 @@ import java.util.stream.StreamSupport;
  * @author Ken Krebs
  * @author Arjen Poutsma
  */
+@SuppressWarnings("unused")
 @DependsOn("petFormatter")
 @Controller
 @RequestMapping("/owners/{ownerId}")
@@ -48,15 +50,9 @@ class PetController {
 	private static GeneralConfig generalConfig;
 
 	private final OwnerRepository owners;
-	private PetRepository petRepository;
-	private PetFormatter petFormatter;
 
-	public PetController(OwnerRepository owners,
-						 PetRepository petRepository,
-						 PetFormatter petFormatter) {
+	public PetController(OwnerRepository owners) {
 		this.owners = owners;
-		this.petRepository = petRepository;
-		this.petFormatter = petFormatter;
 	}
 
 	@ModelAttribute("types")
@@ -87,10 +83,6 @@ class PetController {
 
 	@GetMapping("/pets/all")
 	public String getAllPets(Model model) {
-		String pets = StreamSupport.stream(petRepository.findAll().spliterator(), true)
-			.map(petFormatter::format)
-			.collect(Collectors.joining(",\n"));
-		model.addAttribute("pets", pets);
 		return "all-pets";
 	}
 
