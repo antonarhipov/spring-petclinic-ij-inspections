@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.owner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.samples.petclinic.owner.PetFormatterProvider.PetFormatter;
 import org.springframework.samples.petclinic.system.GeneralConfig;
@@ -51,7 +52,8 @@ class PetController {
 
 	private final OwnerRepository owners;
 
-	public PetController(OwnerRepository owners) {
+	public PetController(OwnerRepository owners,
+						 @Qualifier("dogs") PetSuggester petSuggester) {
 		this.owners = owners;
 	}
 

@@ -13,7 +13,7 @@ trigger inspections provided by IJ IDEA Ultimate.
 | 4   | Spring Boot | SpringBootApplicationPropertiesInspection      | `application.properties`                         |
 | 5   |             | SpringBootApplicationSetupInspection           | `PetClinicApplication`                           |
 | 6   |             | ConfigurationPropertiesInspection              | `GeneralConfig`                                  |
-| 7   | Spring Core | SpringAutowiringInspection                     | `OwnerController` constructors                   |
+| 7   | Spring Core | SpringAutowiringInspection                     | Owner, Pet & Vet controller constructors         |
 | 8   |             | SpringJavaAutowiredFieldsWarningInspection     | `PetController#generalConfig`                    |
 | 9   |             | SpringDependsOnUnresolvedBeanInspection        | `EntityRequestedEventPublisher`                  |
 | 10  |             | ContextJavaBeanUnresolvedMethodsInspection     | `PetFormatterProvider#petFormatter`              |
@@ -84,12 +84,20 @@ Reports invalid prefixes defined in the `@ConfigurationProperties` annotations:
 Reports autowiring problems on injection points of Spring beans:
  
 * More than one bean of 'concrete' type
-* No beans of 'concrete' type
-* No bean with qualifier
-* Incorrect usages of `@Autowired` on Spring bean constructors
-* Injected or autowired fields/methods in classes that are not valid Spring beans
 
-![SpringAutowiringInspection](./etc/SpringAutowiringInspection.png)
+    ![SpringAutowiringInspection-multiple-candidates](./etc/SpringAutowiringInspection-multiple-candidates.png)
+
+* No beans of 'concrete' type
+
+    ![SpringAutowiringInspection-no-candidates](./etc/SpringAutowiringInspection-no-candidates.png)
+
+* No bean with qualifier
+
+    ![SpringAutowiringInspection-no-qualified-candidate](./etc/SpringAutowiringInspection-no-qualified-candidate.png)
+
+* Incorrect usages of `@Autowired` on Spring bean constructors
+
+    ![SpringAutowiringInspection](./etc/SpringAutowiringInspection-two-constructors.png)
 
 #### Spring Java Autowired Fields Warning Inspection
 

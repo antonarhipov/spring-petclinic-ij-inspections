@@ -15,14 +15,17 @@
  */
 package org.springframework.samples.petclinic.vet;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.samples.petclinic.owner.Pet;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,9 +39,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 class VetController {
 
 	private final VetRepository vets;
+	private VetAppointmentProvider vetAppointmentProvider;
+	private VetSuggester vetSuggester;
 
-	public VetController(VetRepository clinicService) {
+	public VetController(VetRepository clinicService,
+						 VetAppointmentProvider vetAppointmentProvider,
+						 VetSuggester vetSuggester) {
 		this.vets = clinicService;
+		this.vetAppointmentProvider = vetAppointmentProvider;
+		this.vetSuggester = vetSuggester;
+	}
+
+	@PostMapping("/vets/suggest")
+	public String suggestVet(@RequestParam Pet pet) {
+		return "vets/suggest";
+	}
+
+	@PostMapping ("/vets/book")
+	public String bookAppointment(@RequestParam Vet vet) {
+		vetAppointmentProvider.bookAppointment(vet, LocalDateTime.now());
+		return "vets/book";
 	}
 
 	@GetMapping("/vets.html")
