@@ -14,16 +14,14 @@ trigger inspections provided by IJ IDEA Ultimate.
 | 5   |             | SpringBootApplicationSetupInspection           | `PetClinicApplication`                           |
 | 6   |             | ConfigurationPropertiesInspection              | `GeneralConfig`                                  |
 | 7   | Spring Core | SpringAutowiringInspection                     | `OwnerController` constructors                   |
-| 8   |             | SpringJavaStaticMembersAutowiringInspection    | `PetController#generalConfig`                    |
-| 9   |             | SpringJavaAutowiredFieldsWarningInspection     | `PetController#generalConfig`                    |
-| 10  |             | SpringDependsOnUnresolvedBeanInspection        | `EntityRequestedEventPublisher`                  |
-| 11  |             | ContextJavaBeanUnresolvedMethodsInspection     | `PetFormatterProvider#petFormatter`              |
-| 12  |             | SpringCacheNamesInspection                     | `OwnerController#findAllOwners`                  |
-| 13  |             | SpringEventListenerInspection                  | `EntityRequestedEventListener#onEntityRequested` |
-| 14  |             | SpringComponentScanInspection                  | `PetClinicApplication`                           |
-| 15  | Spring MVC  | SpringMVCViewInspection                        | `PetController#getAllPets`                       |
-| 16  |             | MVCPathVariableInspection                      | `PetController#getAllPets`                       |
-| 17  |             | SpringMVCInitBinderInspection                  | `OwnerController#setAllowedFields`               |
+| 8   |             | SpringJavaAutowiredFieldsWarningInspection     | `PetController#generalConfig`                    |
+| 9   |             | SpringDependsOnUnresolvedBeanInspection        | `EntityRequestedEventPublisher`                  |
+| 10  |             | ContextJavaBeanUnresolvedMethodsInspection     | `PetFormatterProvider#petFormatter`              |
+| 11  |             | SpringCacheNamesInspection                     | `OwnerController#findAllOwners`                  |
+| 12  |             | SpringEventListenerInspection                  | `EntityRequestedEventListener#onEntityRequested` |
+| 13  |             | SpringComponentScanInspection                  | `PetClinicApplication`                           |
+| 14  | Spring MVC  | SpringMVCViewInspection                        | `PetController#getAllPets`                       |
+| 15  |             | MVCPathVariableInspection                      | `PetController#getAllPets`                       |
 
 ## Inspection Descriptions
 
@@ -93,12 +91,6 @@ Reports autowiring problems on injection points of Spring beans:
 
 ![SpringAutowiringInspection](./etc/SpringAutowiringInspection.png)
 
-#### Spring Java Static Members Autowiring Inspection
-
-Reports autowired and injected static methods/fields of Spring components:
-
-![SpringJavaStaticMembersAutowiringInspection](./etc/SpringJavaStaticMembersAutowiringInspection.png)
-
 #### Spring Java Autowired Fields Warning Inspection
 
 Reports injected or autowired fields in Spring components.
@@ -156,9 +148,3 @@ Reports `@PathVariable` parameters that are declared in the method signature
 but are absent in the URL path or vice versa. The quick-fix adds the missing parameter:
 
 ![MVCPathVariableInspection](./etc/MVCPathVariableInspection.png)
-
-#### Spring MVC Init Binder Inspection
-
-Reports Spring MVC Controller methods annotated with `@InitBinder` that are not declared as void:
-
-![SpringMVCInitBinderInspection](./etc/SpringMVCInitBinderInspection.png)

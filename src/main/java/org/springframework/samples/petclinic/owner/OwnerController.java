@@ -17,7 +17,6 @@ package org.springframework.samples.petclinic.owner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -66,9 +65,8 @@ class OwnerController {
 	}
 
 	@InitBinder
-	public boolean setAllowedFields(WebDataBinder dataBinder) {
+	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
-		return true;
 	}
 
 	@CachePut

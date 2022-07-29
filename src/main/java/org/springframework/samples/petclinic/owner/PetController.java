@@ -47,7 +47,7 @@ class PetController {
 	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
 	@Autowired
-	private static GeneralConfig generalConfig;
+	private GeneralConfig generalConfig;
 
 	private final OwnerRepository owners;
 
