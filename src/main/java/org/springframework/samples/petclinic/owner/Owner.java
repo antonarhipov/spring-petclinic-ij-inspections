@@ -18,17 +18,10 @@ package org.springframework.samples.petclinic.owner;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotEmpty;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.util.Assert;
@@ -47,15 +40,15 @@ import org.springframework.util.Assert;
 public class Owner extends Person {
 
 	@Column(name = "address")
-	@NotEmpty
+	@NotBlank
 	private String address;
 
 	@Column(name = "city")
-	@NotEmpty
+	@NotBlank
 	private String city;
 
 	@Column(name = "telephone")
-	@NotEmpty
+	@NotBlank
 	@Digits(fraction = 0, integer = 10)
 	private String telephone;
 
