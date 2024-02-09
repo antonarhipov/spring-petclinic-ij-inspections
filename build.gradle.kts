@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "org.springframework.samples"
-version = "2.6.0"
+version = "3.2.2"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
