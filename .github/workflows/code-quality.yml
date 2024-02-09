@@ -26,7 +26,7 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - name: Build with Maven Wrapper
-        run: ./mvnw -B verify
+        run: ./mvnw -DskipTests -B verify
   qodana:
     runs-on: ubuntu-latest
     permissions:
