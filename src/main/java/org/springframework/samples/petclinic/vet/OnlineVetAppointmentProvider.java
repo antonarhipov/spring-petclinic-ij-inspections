@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 
 @Component
 public class OnlineVetAppointmentProvider implements VetAppointmentProvider {
+
 	@Override
 	public void bookAppointment(Vet vet, LocalDateTime dateTime) {
 	}
+
 }

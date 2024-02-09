@@ -14,4 +14,5 @@ public class EntityRequestedEvent extends ApplicationEvent {
 	public String getEntityName() {
 		return entityName;
 	}
+
 }

@@ -12,4 +12,5 @@ public class GeneralConfig {
 	public String getWelcomeText() {
 		return welcomeText;
 	}
+
 }

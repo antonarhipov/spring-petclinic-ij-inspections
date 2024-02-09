@@ -12,4 +12,5 @@ public interface PetRepository extends CrudRepository<Pet, Integer> {
 	List<Pet> findByType(Integer type);
 
 	Map<Integer, Pet> findAllByBirthDate(LocalDate birthDate);
+
 }

@@ -52,8 +52,7 @@ class PetController {
 
 	private final OwnerRepository owners;
 
-	public PetController(OwnerRepository owners,
-						 @Qualifier("dogs") PetSuggester petSuggester) {
+	public PetController(OwnerRepository owners, @Qualifier("dogs") PetSuggester petSuggester) {
 		this.owners = owners;
 	}
 

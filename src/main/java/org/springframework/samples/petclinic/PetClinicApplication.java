@@ -29,9 +29,7 @@ import org.springframework.samples.petclinic.system.GeneralConfig;
  *
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {
-	"org.springframework.samples.unknown"
-})
+@ComponentScan(basePackages = { "org.springframework.samples.unknown" })
 @EnableConfigurationProperties(GeneralConfig.class)
 public class PetClinicApplication {
 

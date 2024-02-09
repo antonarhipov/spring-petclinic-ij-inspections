@@ -39,12 +39,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 class VetController {
 
 	private final VetRepository vets;
+
 	private VetAppointmentProvider vetAppointmentProvider;
+
 	private VetSuggester vetSuggester;
 
-	public VetController(VetRepository clinicService,
-						 VetAppointmentProvider vetAppointmentProvider,
-						 VetSuggester vetSuggester) {
+	public VetController(VetRepository clinicService, VetAppointmentProvider vetAppointmentProvider,
+			VetSuggester vetSuggester) {
 		this.vets = clinicService;
 		this.vetAppointmentProvider = vetAppointmentProvider;
 		this.vetSuggester = vetSuggester;
@@ -55,7 +56,7 @@ class VetController {
 		return "vets/suggest";
 	}
 
-	@PostMapping ("/vets/book")
+	@PostMapping("/vets/book")
 	public String bookAppointment(@RequestParam Vet vet) {
 		vetAppointmentProvider.bookAppointment(vet, LocalDateTime.now());
 		return "vets/book";

@@ -17,4 +17,5 @@ public class EntityRequestedEventPublisher {
 	public void publish(EntityRequestedEvent event) {
 		applicationEventPublisher.publishEvent(event);
 	}
+
 }

@@ -17,5 +17,7 @@ public class PetFormatterProvider {
 		public String format(Pet pet) {
 			return pet.getName();
 		}
+
 	}
+
 }

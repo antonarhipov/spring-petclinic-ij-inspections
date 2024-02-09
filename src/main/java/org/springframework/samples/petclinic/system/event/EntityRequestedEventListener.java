@@ -14,4 +14,5 @@ public class EntityRequestedEventListener {
 	private static void onEntityRequested(EntityRequestedEvent event) {
 		LOG.info("Entity requested: " + event.getEntityName());
 	}
+
 }

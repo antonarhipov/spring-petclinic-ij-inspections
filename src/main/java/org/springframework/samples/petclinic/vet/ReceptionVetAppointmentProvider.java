@@ -10,4 +10,5 @@ public class ReceptionVetAppointmentProvider implements VetAppointmentProvider {
 	@Override
 	public void bookAppointment(Vet vet, LocalDateTime dateTime) {
 	}
+
 }

@@ -41,7 +41,7 @@ import java.util.Map;
  * @author Michael Isvy
  */
 @Controller
-@SuppressWarnings({"FieldCanBeLocal", "unused"})
+@SuppressWarnings({ "FieldCanBeLocal", "unused" })
 class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
@@ -53,14 +53,12 @@ class OwnerController {
 	private EntityRequestedEventPublisher requestedEventPublisher;
 
 	@Autowired
-	public OwnerController(GeneralConfig generalConfig,
-						   EntityRequestedEventPublisher requestedEventPublisher) {
+	public OwnerController(GeneralConfig generalConfig, EntityRequestedEventPublisher requestedEventPublisher) {
 		this.generalConfig = generalConfig;
 	}
 
 	@Autowired
-	public OwnerController(OwnerRepository clinicService,
-						   EntityRequestedEventPublisher requestedEventPublisher) {
+	public OwnerController(OwnerRepository clinicService, EntityRequestedEventPublisher requestedEventPublisher) {
 		this.owners = clinicService;
 	}
 
