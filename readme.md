@@ -19,7 +19,7 @@ trigger inspections provided by IJ IDEA Ultimate.
 | 10  |             | ContextJavaBeanUnresolvedMethodsInspection     | `PetFormatterProvider#petFormatter`              |
 | 11  |             | SpringCacheNamesInspection                     | `OwnerController#findAllOwners`                  |
 | 12  |             | SpringEventListenerInspection                  | `EntityRequestedEventListener#onEntityRequested` |
-| 13  |             | SpringComponentScanInspection                  | `PetClinicApplication`                           |
+| 13  |             | SpringComponentScan                            | `PetClinicApplication`                           |
 | 14  | Spring MVC  | SpringMVCViewInspection                        | `PetController#getAllPets`                       |
 | 15  |             | MVCPathVariableInspection                      | `PetController#getAllPets`                       |
 
