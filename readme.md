@@ -10,8 +10,8 @@ trigger inspections provided by IJ IDEA Ultimate.
 | 1   | Spring Data | SpringDataRepositoryMethodParametersInspection | `PetRepository#findByType`                       |
 | 2   |             | SpringDataMethodInconsistencyInspection        | `OwnerRepository#findByName`                     |
 | 3   |             | SpringDataRepositoryMethodReturnTypeInspection | `PetRepository#findByName`                       |
-| 4   | Spring Boot | SpringBootApplicationPropertiesInspection      | `application.properties`                         |
-| 5   |             | SpringBootApplicationSetupInspection           | `PetClinicApplication`                           |
+| 4   | Spring Boot | SpringBootApplicationProperties                | `application.properties`                         |
+| 5   |             | SpringBootApplicationSetup                     | `PetClinicApplication`                           |
 | 6   |             | ConfigurationProperties                        | `GeneralConfig`                                  |
 | 7   | Spring Core | SpringAutowiringInspection                     | Owner, Pet & Vet controller constructors         |
 | 8   |             | SpringJavaAutowiredFieldsWarningInspection     | `PetController#generalConfig`                    |
