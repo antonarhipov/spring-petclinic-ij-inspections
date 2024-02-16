@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PetFormatterProvider {
 
-	@Bean(initMethod = "init")
+	@Bean(initMethod = "initMethod")
 	public PetFormatter petFormatter() {
 		return new PetFormatter();
 	}
