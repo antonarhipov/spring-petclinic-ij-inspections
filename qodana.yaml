@@ -9,9 +9,8 @@ profile:
   name: qodana.recommended
 
 #Enable inspections
-include:
-  - name: CheckDependencyLicenses
 #include:
+#  - name: CheckDependencyLicenses
 #  - name: <SomeEnabledInspectionId>
 
 #Disable inspections
